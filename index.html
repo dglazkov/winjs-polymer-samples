@@ -12,7 +12,7 @@
     <!-- HTML imports -->
     <link rel="import" href="elements/winjs-pivot.html"/>
     <link rel="import" href="elements/winjs-pivot-item.html"/>
-    <link rel="import" href="bower_components/core-list/core-list.html">
+    <link rel="import" href="elements/mail-items.html"/>
 
   </head>
   <body unresolved>
@@ -22,23 +22,14 @@
     <a class="source" href="https://github.com/banguero/winjs-polymer-samples" target="_blank">view source (GitHub)</a>
     <winjs-pivot-sample class="sample"></winjs-pivot-sample>
 
+
     <polymer-element name="winjs-pivot-sample">
       <template>
         <link rel="stylesheet" href="css/winjs-pivot-sample.css">
 
         <winjs-pivot title="INBOX - EMAIL" selectedIndex="0">
           <winjs-pivot-item header="all">
-            <core-list id="list" data="{{data}}" height="100">
-              <template repeat>
-                <div class="item">
-                  <div class="message">
-                    <div class="from">{{name}}</div>
-                    <div class="subject win-pivot-slide1">{{subject}}</div>
-                    <div class="details win-pivot-slide2">{{details}}</div>
-                  </div>
-                </div>
-              </template>
-            </core-list>
+            <mail-items items="{{all}}"></mail-items>
           </winjs-pivot-item>
 
           <winjs-pivot-item header="unread">
@@ -73,7 +64,7 @@
           Polymer('winjs-pivot-sample', {
             count: 1000,
             ready: function() {
-              this.data = this.generateData();
+              this.all = this.generateData();
             },
             domReady: function() {
               var mailItemTemplate = this.shadowRoot.querySelector(".mailItemTemplate");
@@ -99,7 +90,6 @@
             }
           });
 
-          document.addEventListener("WebComponentsReady", function() {
             var data = [];
             for (var i = 0; i <  5; i++) {
               data.push({ name: "Chris Anderson", subject: "QuickStart's and How To's", details: "More information on how to use WinJS controls"});
@@ -109,7 +99,6 @@
               data.push({ name: "Paul Gildea", subject: "Need help later", details: "I was hoping you could help me with..."});
             }
             window.Urgent = { dataSource: new WinJS.Binding.List(data).dataSource };
-          })
         })();  
       </script>
     </polymer-element>

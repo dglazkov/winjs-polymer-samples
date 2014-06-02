@@ -1,0 +1,68 @@
+<link rel="import" href="../bower_components/core-list/core-list.html">
+
+<polymer-element name="mail-items" noscript attributes="items">
+  <template>
+    <style>
+
+      :host {
+        display: block;
+      }
+
+      core-list {
+        height: 560px;
+        width: 380px;
+      }
+
+      .item {
+        box-sizing: border-box;
+        height: 80px;
+        padding: 4px;
+        cursor: default;
+        background-color: #000;
+        color:#fff;
+        overflow: hidden;
+      }
+
+      .message {
+        line-height: 137%;
+        background-repeat: no-repeat;
+        background-position: 10px 10px;
+        background-size: 60px;
+      }
+
+      .from {
+        display: inline;
+        font-size:24pt;
+      }
+
+      .subject {
+        color: rgba(212, 14, 136, 1);
+      }
+
+      .details {
+        font-size: 14px;
+      }
+
+      ::-webkit-scrollbar {
+          background-color:transparent;
+      }
+
+      ::-webkit-scrollbar-thumb
+      {
+          border:1px solid rgba(220,220,220, 0.3);
+      }
+
+    </style>
+    <core-list id="list" data="{{items}}" height="80">
+      <template repeat>
+        <div class="item">
+          <div class="message">
+            <div class="from">{{name}}</div>
+            <div class="subject win-pivot-slide1">{{subject}}</div>
+            <div class="details win-pivot-slide2">{{details}}</div>
+          </div>
+        </div>
+      </template>
+    </core-list>
+  </template>
+</polymer-element>
